@@ -7,10 +7,13 @@ import hashlib
 import random
 from datetime import datetime, timezone
 
+from utils import zip_path
+
 '''
 Disco Elysium
-pc: SaveGames
-switch SaveSlots
+pc: xx/SaveGames
+switch xx/SaveSlots
+@TODO: keep timestamp
 '''
 class disco_elysium(Converter):
 
@@ -23,7 +26,7 @@ class disco_elysium(Converter):
         savecache_json = []
 
         # SaveSlots
-        # 在saves/pc/Disco Elysium下创建一个临时文件夹，包含多个子文件夹，等下会用来zip压缩。
+        # Create a temporary folder under saves/pc/Disco Elysium with multiple subfolders for zip compression later.
         tmp_path = 'saves/pc/Disco Elysium/SaveSlots/'
         if not os.path.exists(tmp_path):
             os.makedirs(tmp_path)
@@ -31,7 +34,7 @@ class disco_elysium(Converter):
         for fname in os.listdir(pc_folder_path):
             if fname.endswith('.jpg'):
                 basename = os.path.splitext(fname)[0]
-                # 为一个fanme.ntwtf.zip 和 fname.jpg 创建一个临时文件夹
+                # Create a temporary folder for fname.ntwtf.zip and fname.jpg
                 random_string = hashlib.md5(str(random.random()).encode()).hexdigest()[:31]
                 os.makedirs(tmp_path + random_string)
                 # copy
@@ -59,14 +62,7 @@ class disco_elysium(Converter):
         with open(os.path.join(tmp_path, 'cache.json'), 'w', encoding='utf-8', newline='\n') as json_file:
             json.dump(savecache_json, json_file, indent=4, ensure_ascii=False)
 
-        # zip
-        tmp_path = 'saves/pc/Disco Elysium/'
-        with zipfile.ZipFile(switch_fpath, 'w', zipfile.ZIP_DEFLATED) as zipf:
-            for root, dirs, files in os.walk(tmp_path):
-                for file in files:
-                    file_path = os.path.join(root, file)
-                    arcname = os.path.relpath(file_path, tmp_path)
-                    zipf.write(file_path, arcname)
+        zip_path(switch_fpath, 'saves/pc/Disco Elysium/')
         
         return True
 
@@ -77,11 +73,7 @@ class disco_elysium(Converter):
 
         pc_folder_path = os.path.join(pc_folder_path, 'SaveGames')
 
-        if not os.path.exists('saves/switch/Disco Elysium'):
-            os.makedirs('saves/switch/Disco Elysium')
-
         switch_fname = os.path.splitext(os.path.basename(switch_fpath))[0]
-        
         switch_extraction_path = os.path.join('saves', 'switch', 'Disco Elysium', switch_fname)
         if not os.path.exists(switch_extraction_path):
             os.makedirs(switch_extraction_path)
