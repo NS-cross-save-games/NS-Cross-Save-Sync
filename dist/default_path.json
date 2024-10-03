@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Disco Elysium",
+        "class_name": "disco_elysium",
+        "default_pc_path": "C:\\Users\\$USER_NAME\\AppData\\LocalLow\\ZAUM Studio\\Disco Elysium"
+    },
+    {
+        "name": "The Witcher 3",
+        "class_name": "the_witcher_3",
+        "default_pc_path": "C:\\Users\\$USER_NAME\\Documents\\The Witcher 3"
+    }
+]
