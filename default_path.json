@@ -1,9 +1,16 @@
 [
     {
+        "name": "Balatro",
+        "class_name": "balatro",
+        "default_pc_path": "C:\\Users\\$USER_NAME\\AppData\\Roaming\\Balatro"
+    }
+    ,
+    {
         "name": "Disco Elysium",
         "class_name": "disco_elysium",
         "default_pc_path": "C:\\Users\\$USER_NAME\\AppData\\LocalLow\\ZAUM Studio\\Disco Elysium"
-    },
+    }
+    ,
     {
         "name": "The Witcher 3",
         "class_name": "the_witcher_3",

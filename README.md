@@ -8,7 +8,16 @@ A best practice is to mount webdav locally and use NS-Cross-Save-Sync for bidire
 
 ## run
 
-```python
+```bash
+git clone https://github.com/NS-cross-save-games/NS-Cross-Save-Sync.git
+cd dist
+./main.exe
+```
+
+Or
+
+```bash
+git clone https://github.com/NS-cross-save-games/NS-Cross-Save-Sync.git
 pip install -r requirements.txt
 python main.py
 ```
@@ -17,4 +26,4 @@ python main.py
 
 - [x] Disco Elysium
 - [x] The Witcher 3
-- [ ] Balatro
+- [x] Balatro
